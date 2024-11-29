@@ -1,0 +1,24 @@
+---
+- name: Deploy Kubernetes Pod and Service
+  hosts: k8s_master
+  tasks:
+    - name: Copy Pod manifest to master
+      copy:
+        src: /var/lib/jenkins/test-pod.yaml
+        dest: /home/ubuntu/test-pod.yaml
+
+    - name: Apply the Pod manifest
+      command: kubectl apply -f /home/ubuntu/test-pod.yaml
+      environment:
+        KUBECONFIG: /etc/kubernetes/admin.conf
+
+    - name: Copy Service manifest to master
+      copy:
+        src: /var/lib/jenkins/nginx-service.yaml
+        dest: /home/ubuntu/nginx-service.yaml
+
+    - name: Apply the Service manifest
+      command: kubectl apply -f /home/ubuntu/nginx-service.yaml
+      environment:
+        KUBECONFIG: /etc/kubernetes/admin.conf
+
