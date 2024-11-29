@@ -4,7 +4,7 @@
   tasks:
     - name: Copy Pod manifest to master
       copy:
-        src: /var/lib/jenkins/test-pod.yaml
+        src: /var/lib/jenkins/workspace/junho/test-pod.yaml
         dest: /home/ubuntu/test-pod.yaml
 
     - name: Apply the Pod manifest
@@ -14,11 +14,12 @@
 
     - name: Copy Service manifest to master
       copy:
-        src: /var/lib/jenkins/nginx-service.yaml
+        src: /var/lib/jenkins/workspace/junho/nginx-service.yaml
         dest: /home/ubuntu/nginx-service.yaml
 
     - name: Apply the Service manifest
       command: kubectl apply -f /home/ubuntu/nginx-service.yaml
       environment:
         KUBECONFIG: /etc/kubernetes/admin.conf
+
 
