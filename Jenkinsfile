@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ansible-playbook -i /var/lib/jenkins/inven workspace/junho/playbook.yaml'
+                sh 'ansible-playbook -i /var/lib/jenkins/inven /var/lib/jenkins/workspace/junho/playbook.yaml'
             }
         }
     }
